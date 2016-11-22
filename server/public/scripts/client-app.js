@@ -31,15 +31,6 @@ myApp.controller("BookController", ["$http", function($http) {
       });
   }
 
-  function getGenre(selectedGenre) {
-    console.log(selectedGenre);
-    // $http.get('/books/genre/' + selectedGenre)
-    //   .then(function(response) {
-    //     console.log(response.data);
-    //     self.books = response.data;
-    //   });
-  }
-
   // tied to DOM thru self object
   self.addBook = function() {
     console.log('new book: ', self.newBook);
