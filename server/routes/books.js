@@ -3,11 +3,33 @@ var router = express.Router();
 var pg = require('pg');
 var connectionString = 'postgres://localhost:5432/sigma';
 
-router.get('/:genre/*/*', function(req, res, next) {
-  console.log('req params', req.params);
-  req.message = "hello from the previous middleware!";
-  res.send('done');
-  // next();
+router.get('/genre/:selectedGenre', function(req, res){
+
+  console.log('genre get request');
+
+  var bookGenre = req.params.selectedGenre;
+
+  pg.connect(connectionString, function(err, client, done) {
+    if(err){
+      console.log('connection error: ', err);
+      res.sendStatus(500);
+    }
+
+    client.query(
+      "SELECT * FROM books WHERE genre = $1;",
+      [bookGenre],
+
+      function(err, result){
+        done();
+
+        if(err) {
+          console.log('select query error: ', err);
+          res.sendStatus(500);
+        }
+        res.send(result.rows);
+      }
+    );
+  });
 });
 
 router.get('/', function(req, res) {

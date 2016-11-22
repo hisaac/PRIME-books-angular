@@ -49,15 +49,18 @@
       </form>
 
       <h2>Books</h2>
-      <div class="book" ng-repeat="book in bookController.books">
-        <input type="text" ng-model="book.title"/>
+
+      <select ng-model="bookController.genreSearch" ng-options="book.genre for book in bookController.books | unique: 'genre'"></select>
+
+      <div class="book" ng-repeat="book in bookController.books | filter: bookController.genreSearch.genre">
+        <input type="text" ng-model="book.title" />
         <input type="text" ng-model="book.author" />
         <input type="text" ng-model="book.published" />
         <input type="text" ng-model="book.genre" />
         <input type="text" ng-model="book.edition" />
         <input type="text" ng-model="book.publisher" />
-        <button ng-click="bookController.editMe(book)">Edit</button>
-        <button ng-click="bookController.deleteMe(book)">Delete</button>
+        <button ng-click="bookController.editMe(book)" class="btn btn-default">Edit</button>
+        <button ng-click="bookController.deleteMe(book)" class="btn btn-default">Delete</button>
       </div>
     </main>
 
