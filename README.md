@@ -1,6 +1,8 @@
 # Angular AJAX Lecture
 
-Covers AJAX with Angular using $http service. This app converts the client side of our full stack jQuery SQL Book Manager application.
+This assignment covers AJAX requests in Angular using the $http service. The app converts the client side of the SQL Book Manager application that we previously wrote using jQuery.
+
+---
 
 ## Original jQuery Repo
 
